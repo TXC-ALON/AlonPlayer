@@ -1,16 +1,20 @@
 import cv2
 import ffmpeg
 import os
-from utils import printDict
+from utils import *
 import math
+
 NaN = math.nan
+
 
 class Video:
     def __init__(self, path):
         self.path = path
         self.absolute_path = os.path.abspath(path)
         self.directory = os.path.dirname(self.absolute_path)
-        self.filename = os.path.basename(self.absolute_path)
+        self.file_name = os.path.basename(self.absolute_path)
+        self.file_size = os.path.getsize(self.absolute_path) / (1024 * 1024)
+        self.file_size = "{:.3f}MB".format(self.file_size)
         self.codec_name = None
         self.codec_long_name = None
         self.width = None
@@ -31,7 +35,7 @@ class Video:
             self.video_stream = next((stream for stream in probe['streams'] if stream['codec_type'] == 'video'))
         except:
             raise Exception("未找到匹配的视频流")
-        #printDict(self.video_stream)
+        # printDict(self.video_stream)
         self.codec_name = self.video_stream.get('codec_name', self.codec_name)
         self.codec_long_name = self.video_stream.get('codec_long_name', self.codec_long_name)
         self.width = self.video_stream.get('width', self.width)
@@ -53,7 +57,10 @@ class Video:
         milliseconds *= 1000
         minutes, seconds = divmod(seconds, 60)
         hours, minutes = divmod(minutes, 60)
-        return "{:02d}:{:02d}:{:02d}:{:03d}".format(int(hours), int(minutes), int(seconds), int(milliseconds))
+        if int(hours) != 0:
+            return "{:02d}h:{:02d}m:{:02d}s:{:03dms}".format(int(hours), int(minutes), int(seconds), int(milliseconds))
+        else:
+            return "{:02d}m:{:02d}s:{:03d}ms".format(int(minutes), int(seconds), int(milliseconds))
 
     def __format_bit_rate(self, bit_rate):
         if bit_rate == NaN:
@@ -74,8 +81,17 @@ class Video:
     def to_dict(self):
         return vars(self)
 
+    def printvideo(self):
+        printDict(self.to_dict())
+
+    def printvideo_simple(self, order=None):
+        if order is None:
+            print("名称[{0}],时长=[{1}],大小=[{2}] resolution=[{3}*{4}]"
+                  .format(self.file_name, self.timeout, self.file_size, self.width, self.height, order))
+        else:
+            print("{5}:名称[{0}],时长=[{1}],大小=[{2}] resolution=[{3}*{4}]"
+                  .format(self.file_name, self.timeout,self.file_size, self.width,self.height, order))
 
 if __name__ == '__main__':
-    #testV = Video("../TestFile/SongGod.mp4")
+    # testV = Video("../TestFile/SongGod.mp4")
     testV = Video("../TestFile/Fibonacci_100.mp4")
-    printDict(testV.to_dict())
