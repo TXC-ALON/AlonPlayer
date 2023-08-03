@@ -49,20 +49,12 @@ class Video:
         self.timeout = self.__format_duration(self.duration)
         self.overall_bit_rate = self.__format_bit_rate(self.bit_rate)
 
-    def __format_duration(self, seconds):
-        if seconds == NaN:
-            return "DURATION ERROR"
-        seconds = float(seconds)
-        seconds, milliseconds = divmod(seconds, 1)
-        milliseconds *= 1000
-        minutes, seconds = divmod(seconds, 60)
-        hours, minutes = divmod(minutes, 60)
-        if int(hours) != 0:
-            return "{:02d}h:{:02d}m:{:02d}s:{:03dms}".format(int(hours), int(minutes), int(seconds), int(milliseconds))
-        else:
-            return "{:02d}m:{:02d}s:{:03d}ms".format(int(minutes), int(seconds), int(milliseconds))
+    @staticmethod
+    def __format_duration(seconds):
+        return format_time(seconds)
 
-    def __format_bit_rate(self, bit_rate):
+    @staticmethod
+    def __format_bit_rate(bit_rate):
         if bit_rate == NaN:
             return "BIT_RATE ERROR"
         bit_rate = float(bit_rate)
@@ -82,7 +74,7 @@ class Video:
         return vars(self)
 
     def printvideo(self):
-        printDict(self.to_dict())
+        print_dict(self.to_dict())
 
     def printvideo_simple(self, order=None):
         if order is None:
@@ -90,7 +82,8 @@ class Video:
                   .format(self.file_name, self.timeout, self.file_size, self.width, self.height, order))
         else:
             print("{5}:名称[{0}],时长=[{1}],大小=[{2}] resolution=[{3}*{4}]"
-                  .format(self.file_name, self.timeout,self.file_size, self.width,self.height, order))
+                  .format(self.file_name, self.timeout, self.file_size, self.width, self.height, order))
+
 
 if __name__ == '__main__':
     # testV = Video("../TestFile/SongGod.mp4")

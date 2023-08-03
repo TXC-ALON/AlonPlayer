@@ -5,12 +5,12 @@ import fnmatch
 Default_Video_Format_List = ['.MP4', '.MKV', '.AVI', '.FLV', '.MOV', '.MPEG', '.3GP', '.WebM']
 
 
-class VideoSearcher():
-    def __init__(self, Path, search_video_type=None, min_file_limit="1Mb"):
+class VideoSearcher:
+    def __init__(self, path, search_video_type=None, min_file_limit="1Mb"):
         if search_video_type is None:
             search_video_type = Default_Video_Format_List
-        self.path = Path
-        self.absolute_path = os.path.abspath(Path)
+        self.path = path
+        self.absolute_path = os.path.abspath(path)
         self.search_type = convert_case(search_video_type)
         self.minfilelimit = parse_size_string(min_file_limit)
         self.searched_video_path = []
@@ -55,7 +55,7 @@ class VideoSearcher():
 
 if __name__ == '__main__':
     VS = VideoSearcher(r"../TestFile")
-    #VS = VideoSearcher(r"E:\Manim\ZA")
+    # VS = VideoSearcher(r"E:\Manim\ZA")
     print(VS.searched_video_path)
     print("hello world")
     VS.print_searched_video_simple()
