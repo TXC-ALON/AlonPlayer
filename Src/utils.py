@@ -6,6 +6,13 @@ def print_dict(video_dict):
         print(key + ": " + str(value))
 
 
+def print_video_list_simple(video_dict, order=None):
+    i = 1
+    for video in video_dict:
+        video.printvideo_simple(i)
+        i += 1
+
+
 def print_sorted_dict(video_dict):
     sorted_keys = sorted(video_dict.keys())  # 对字典的键进行排序
     for key in sorted_keys:
@@ -50,3 +57,6 @@ def format_time(seconds):
     else:
         return "{:02d}m:{:02d}s:{:03d}ms".format(int(minutes), int(seconds), int(milliseconds))
 
+
+def compare_video(video):
+    return (video.file_size_pure, video.file_name, video.duration)

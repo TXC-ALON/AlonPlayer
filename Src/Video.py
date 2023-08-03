@@ -13,8 +13,8 @@ class Video:
         self.absolute_path = os.path.abspath(path)
         self.directory = os.path.dirname(self.absolute_path)
         self.file_name = os.path.basename(self.absolute_path)
-        self.file_size = os.path.getsize(self.absolute_path) / (1024 * 1024)
-        self.file_size = "{:.3f}MB".format(self.file_size)
+        self.file_size_pure = os.path.getsize(self.absolute_path) / (1024 * 1024)
+        self.file_size = "{:.3f}MB".format(self.file_size_pure)
         self.codec_name = None
         self.codec_long_name = None
         self.width = None
