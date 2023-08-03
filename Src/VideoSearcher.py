@@ -1,6 +1,7 @@
 import glob
 from Video import *
 import fnmatch
+from operator import itemgetter
 
 Default_Video_Format_List = ['.MP4', '.MKV', '.AVI', '.FLV', '.MOV', '.MPEG', '.3GP', '.WebM']
 
@@ -52,10 +53,41 @@ class VideoSearcher:
             video.printvideo_simple(order)
             order += 1
 
+    def sort_videos(self):
+        sorted_video = sorted(self.searched_video, key=compare_video)
+        return sorted_video
+
+
+# def sort_videos(videos, sort_keys):
+#     sorted_videos = sorted(videos, key=lambda video: [getattr(video, key[0]) for key in sort_keys])
+#     for key in reversed(sort_keys):
+#         if key[1]:
+#             sorted_videos.reverse()
+#     return sorted_videos
+# def sort_videos(videos, sort_keys):
+#     sorted_videos = sorted(videos, key=lambda video: [getattr(video, key[0]) for key in sort_keys])
+#     for i in range(len(sort_keys)-1, -1, -1):
+#         if sort_keys[i][1]:
+#             sorted_videos.sort(key=lambda video: getattr(video, sort_keys[i][0]), reverse=True)
+#     return sorted_videos
 
 if __name__ == '__main__':
-    VS = VideoSearcher(r"../TestFile")
-    # VS = VideoSearcher(r"E:\Manim\ZA")
-    print(VS.searched_video_path)
-    print("hello world")
-    VS.print_searched_video_simple()
+    VS = VideoSearcher(r"E:\00Learning\AlonPlayer")
+    # print(VS.searched_video_path)
+
+    sort_keys = [
+        ('file_name', False),  # 按文件名递增排序
+        ('file_size', True),  # 按文件大小递减排序
+        ('duration', False)  # 按时长递增排序
+    ]
+    sorted_videos = sort_videos(VS.searched_video, sort_keys)
+    print_video_list_simple(sorted_videos)
+    for video in sorted_videos:
+        print(video.file_name, video.file_size, video.duration)
+    #
+    # # VS = VideoSearcher(r"E:\Manim\ZA")
+    # print(VS.searched_video_path)
+    # print("hello world")
+    # VS.print_searched_video_simple()
+    # sortedVS = VS.sort_videos()
+    # print_video_list_simple(sortedVS)
