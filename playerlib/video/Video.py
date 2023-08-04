@@ -6,6 +6,7 @@ from playerlib.utils.utils import *
 
 
 class Video:
+    #@timer_decorator
     def __init__(self, path):
         self.path = path
         self.absolute_path = os.path.abspath(path)
@@ -27,6 +28,7 @@ class Video:
         self.overall_bit_rate = NaN
         self.__getVideoInfo()
 
+    @timer_decorator
     def __getVideoInfo(self):
         try:
             probe = ffmpeg.probe(self.absolute_path)
@@ -48,10 +50,12 @@ class Video:
         self.overall_bit_rate = self.__format_bit_rate(self.bit_rate)
 
     @staticmethod
+    #@timer_decorator
     def __format_duration(seconds):
         return format_time(seconds)
 
     @staticmethod
+    #@timer_decorator
     def __format_bit_rate(bit_rate):
         if bit_rate == NaN:
             return "BIT_RATE ERROR"
@@ -85,4 +89,4 @@ class Video:
 
 if __name__ == '__main__':
     # testV = Video("../testfile/SongGod.mp4")
-    testV = Video("../testfile/Fibonacci_100.mp4")
+    testV = Video("../../test/testfile/Fibonacci_100.mp4")

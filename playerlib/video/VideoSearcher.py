@@ -3,6 +3,8 @@ from playerlib.constants import *
 from playerlib.utils.utils import *
 from playerlib.video.Video import *
 import time
+import threading
+
 
 class VideoSearcher:
     def __init__(self, path, search_video_type=None, min_file_limit="1Mb"):
@@ -15,8 +17,10 @@ class VideoSearcher:
         self.searched_video_path = []
         self.searched_video_path = self.get_video_path()
         self.searched_video = []
-        self.searched_video = self.get_video()
+        # self.searched_video = self.get_video()
+        self.searched_video = self.get_video_multithread(MULTITHREAD)
 
+    # @timer_decorator
     def get_video_path(self):
         video_files = []
         trash_video_files = []
@@ -34,11 +38,33 @@ class VideoSearcher:
 
         return video_files
 
+    @timer_decorator
     def get_video(self):
         video_list = []
         for video_path in self.searched_video_path:
             temp_video = Video(video_path)
             video_list.append(temp_video)
+        return video_list
+
+    @timer_decorator
+    def get_video_multithread(self, num_threads=2):
+        video_list = []
+        threads = []
+
+        def process_video(video_path):
+            temp_video = Video(video_path)
+            video_list.append(temp_video)
+
+        # 创建线程并启动
+        for video_path in self.searched_video_path:
+            t = threading.Thread(target=process_video, args=(video_path,))
+            threads.append(t)
+            t.start()
+
+        # 等待所有线程完成
+        for t in threads:
+            t.join()
+
         return video_list
 
     def print_searched_video(self):
@@ -73,12 +99,5 @@ if __name__ == '__main__':
     # print(VS.searched_video_path)
     # sorted_videos = VS.sort_videos_by_name(False)
     # sorted_videos = VS.sort_videos_by_name(True)
-
     sorted_videos = VS.sort_videos_by_duration(False)
-
-    step2_time = time.time() - start_time
-    print("步骤2耗时：", step2_time, "秒")
-
     print_video_list_simple(sorted_videos)
-    step3_time = time.time() - start_time
-    print("步骤3耗时：", step3_time, "秒")

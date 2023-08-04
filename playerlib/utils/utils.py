@@ -1,4 +1,6 @@
 from numpy import NaN
+import time
+import multiprocessing
 
 
 def print_dict(video_dict):
@@ -60,3 +62,24 @@ def format_time(seconds):
 
 def compare_video(video):
     return (video.file_size_pure, video.file_name, video.duration)
+
+
+def timer_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()  # 记录开始时间
+
+        result = func(*args, **kwargs)  # 执行被装饰的函数
+
+        end_time = time.perf_counter()  # 记录结束时间
+        execution_time = end_time - start_time  # 计算执行时间
+
+        print(f"函数 {func.__name__} 的执行时间为: {execution_time} 秒")
+
+        return result
+
+    return wrapper
+
+
+def get_max_threads():
+    max_threads = multiprocessing.cpu_count()
+    return max_threads
