@@ -3,3 +3,7 @@ message = """
 多行字符串。
 """
 print(message)
+
+fruits = ['apple', 'banana', 'orange']
+for index, fruit in enumerate(fruits, start=2):
+    print(index, fruit)

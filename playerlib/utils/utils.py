@@ -30,10 +30,8 @@ def print_video_list_simple(video_dict, order=None):
         for video in video_dict:
             video.print_video_simple()
     else:
-        i = 1
-        for video in video_dict:
-            video.print_video_simple(i)
-            i += 1
+        for order, video in enumerate(video_dict, start=1):
+            video.print_video_simple(order)
 
 
 def print_sorted_dict(video_dict):
@@ -152,14 +150,12 @@ def get_function_info(if_print=False):
     if if_print:
         print(f"当前文件自定义了 {function_count} 个函数：")
         print("--------------------------------")
-        i = 1
-        for name, _, docstring in functions:
-            print(f"{i} 函数名：{name}")
+        for order, (name, _, docstring) in enumerate(functions, start=1):
+            print(f"{order} 函数名：{name}")
             print(f"注释：\n{docstring}")
             print("--------------------------------")
-            i += 1
     return functions
 
 
 if __name__ == '__main__':
-    function_info = get_function_info(0)
+    function_info = get_function_info(1)

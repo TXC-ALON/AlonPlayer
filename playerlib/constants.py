@@ -9,7 +9,11 @@ BETA_VERSION = '0.0.1'
 DEFAULT_VIDEO_FORMAT_LIST = ['.MP4', '.MKV', '.AVI', '.FLV', '.MOV', '.MPEG', '.3GP', '.WebM']
 MULTITHREAD = get_max_threads() - 2
 
-
+"""
+功能：
+参数：
+返回值：
+"""
 def check_constants():
     """
     功能：检查并输出constants

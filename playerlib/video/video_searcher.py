@@ -1,11 +1,15 @@
 import os
 from playerlib.constants import *
 from playerlib.utils.utils import *
-from playerlib.video.Video import *
+from playerlib.video.video_class import *
 import time
 import threading
 
-
+"""
+功能：
+参数：
+返回值：
+"""
 class VideoSearcher:
     def __init__(self, path, search_video_type=None, min_file_limit="0Mb"):
         if search_video_type is None:
@@ -46,7 +50,7 @@ class VideoSearcher:
             video_list.append(temp_video)
         return video_list
 
-    @timer_decorator
+    #@timer_decorator
     def get_video_multithread(self, num_threads=2):
         video_list = []
         threads = []
@@ -72,10 +76,8 @@ class VideoSearcher:
             video.print_video()
 
     def print_searched_video_simple(self):
-        order = 1
-        for video in self.searched_video:
+        for order, video in enumerate(self.searched_video, start=1):
             video.print_video_simple(order)
-            order += 1
 
     def sort_videos_by_name(self, is_reverse=False):
         sorted_video = sorted(self.searched_video, key=lambda v: (v.file_name, float(v.duration)))

@@ -4,7 +4,11 @@ import os
 from playerlib.constants import NaN
 from playerlib.utils.utils import *
 
-
+"""
+功能：
+参数：
+返回值：
+"""
 class Video:
     #@timer_decorator
     def __init__(self, path):
@@ -28,7 +32,7 @@ class Video:
         self.overall_bit_rate = NaN
         self.__getVideoInfo()
 
-    @timer_decorator
+    #@timer_decorator
     def __getVideoInfo(self):
         try:
             probe = ffmpeg.probe(self.absolute_path)
