@@ -9,7 +9,7 @@ def print_dict(video_dict):
 def print_video_list_simple(video_dict, order=None):
     i = 1
     for video in video_dict:
-        video.printvideo_simple(i)
+        video.print_video_simple(i)
         i += 1
 
 
@@ -55,7 +55,7 @@ def format_time(seconds):
     if int(hours) != 0:
         return "{:02d}h:{:02d}m:{:02d}s:{:03dms}".format(int(hours), int(minutes), int(seconds), int(milliseconds))
     else:
-        return "{:02d}m:{:02d}s:{:03d}ms".format(int(minutes), int(seconds), int(milliseconds))
+        return "{:02d}m{:02d}s".format(int(minutes), int(seconds))
 
 
 def compare_video(video):

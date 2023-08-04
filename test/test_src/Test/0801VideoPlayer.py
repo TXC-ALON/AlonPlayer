@@ -1,4 +1,4 @@
-import ffmpeg
+from playerlib import *
 
 def get_video_info(path):
     probe = ffmpeg.probe(path)
@@ -14,7 +14,7 @@ def get_video_info(path):
     return width, height, frame_rate
 
 # 示例用法
-video_path = '../../TestFile/Fibonacci_100.mp4'
+video_path = '../../testfile/Fibonacci_100.mp4'
 width, height, frame_rate = get_video_info(video_path)
 
 print('Width:', width)
