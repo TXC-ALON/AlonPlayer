@@ -1,16 +1,18 @@
 import cv2
 import ffmpeg
 import os
-from utils import printDict
-import math
-NaN = math.nan
+from playerlib.constants import NaN
+from playerlib.utils.utils import *
+
 
 class Video:
     def __init__(self, path):
         self.path = path
         self.absolute_path = os.path.abspath(path)
         self.directory = os.path.dirname(self.absolute_path)
-        self.filename = os.path.basename(self.absolute_path)
+        self.file_name = os.path.basename(self.absolute_path)
+        self.file_size_pure = os.path.getsize(self.absolute_path) / (1024 * 1024)
+        self.file_size = "{:.3f}MB".format(self.file_size_pure)
         self.codec_name = None
         self.codec_long_name = None
         self.width = None
@@ -31,7 +33,7 @@ class Video:
             self.video_stream = next((stream for stream in probe['streams'] if stream['codec_type'] == 'video'))
         except:
             raise Exception("未找到匹配的视频流")
-        #printDict(self.video_stream)
+        # printDict(self.video_stream)
         self.codec_name = self.video_stream.get('codec_name', self.codec_name)
         self.codec_long_name = self.video_stream.get('codec_long_name', self.codec_long_name)
         self.width = self.video_stream.get('width', self.width)
@@ -45,17 +47,12 @@ class Video:
         self.timeout = self.__format_duration(self.duration)
         self.overall_bit_rate = self.__format_bit_rate(self.bit_rate)
 
-    def __format_duration(self, seconds):
-        if seconds == NaN:
-            return "DURATION ERROR"
-        seconds = float(seconds)
-        seconds, milliseconds = divmod(seconds, 1)
-        milliseconds *= 1000
-        minutes, seconds = divmod(seconds, 60)
-        hours, minutes = divmod(minutes, 60)
-        return "{:02d}:{:02d}:{:02d}:{:03d}".format(int(hours), int(minutes), int(seconds), int(milliseconds))
+    @staticmethod
+    def __format_duration(seconds):
+        return format_time(seconds)
 
-    def __format_bit_rate(self, bit_rate):
+    @staticmethod
+    def __format_bit_rate(bit_rate):
         if bit_rate == NaN:
             return "BIT_RATE ERROR"
         bit_rate = float(bit_rate)
@@ -74,8 +71,18 @@ class Video:
     def to_dict(self):
         return vars(self)
 
+    def print_video(self):
+        print_dict(self.to_dict())
+
+    def print_video_simple(self, order=None):
+        if order is None:
+            print("名称[{0}],时长=[{1}],大小=[{2}] resolution=[{3}*{4}]"
+                  .format(self.file_name, self.timeout, self.file_size, self.width, self.height, order))
+        else:
+            print("{5}:名称[{0}],时长=[{1}],大小=[{2}] resolution=[{3}*{4}]"
+                  .format(self.file_name, self.timeout, self.file_size, self.width, self.height, order))
+
 
 if __name__ == '__main__':
-    #testV = Video("../TestFile/SongGod.mp4")
-    testV = Video("../TestFile/Fibonacci_100.mp4")
-    printDict(testV.to_dict())
+    # testV = Video("../testfile/SongGod.mp4")
+    testV = Video("../testfile/Fibonacci_100.mp4")
