@@ -11,6 +11,11 @@ MULTITHREAD = get_max_threads() - 2
 
 
 def check_constants():
+    """
+    功能：检查并输出constants
+    参数：none
+    返回值：print
+    """
     frame = inspect.currentframe().f_back
     local_vars = frame.f_locals
 

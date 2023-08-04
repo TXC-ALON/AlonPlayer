@@ -7,7 +7,7 @@ import threading
 
 
 class VideoSearcher:
-    def __init__(self, path, search_video_type=None, min_file_limit="1Mb"):
+    def __init__(self, path, search_video_type=None, min_file_limit="0Mb"):
         if search_video_type is None:
             search_video_type = DEFAULT_VIDEO_FORMAT_LIST
         self.path = path
@@ -91,6 +91,7 @@ class VideoSearcher:
 
 
 if __name__ == '__main__':
+    get_function_info(1)
     start_time = time.time()
     VS = VideoSearcher(r"E:\00Learning\AlonPlayer", min_file_limit="0.01MB")
     # 计算步骤1的耗时
