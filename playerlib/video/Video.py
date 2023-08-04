@@ -1,10 +1,8 @@
 import cv2
 import ffmpeg
 import os
-from utils import *
-import math
-
-NaN = math.nan
+from playerlib.constants import NaN
+from playerlib.utils.utils import *
 
 
 class Video:
@@ -73,10 +71,10 @@ class Video:
     def to_dict(self):
         return vars(self)
 
-    def printvideo(self):
+    def print_video(self):
         print_dict(self.to_dict())
 
-    def printvideo_simple(self, order=None):
+    def print_video_simple(self, order=None):
         if order is None:
             print("名称[{0}],时长=[{1}],大小=[{2}] resolution=[{3}*{4}]"
                   .format(self.file_name, self.timeout, self.file_size, self.width, self.height, order))
@@ -86,5 +84,5 @@ class Video:
 
 
 if __name__ == '__main__':
-    # testV = Video("../TestFile/SongGod.mp4")
-    testV = Video("../TestFile/Fibonacci_100.mp4")
+    # testV = Video("../testfile/SongGod.mp4")
+    testV = Video("../testfile/Fibonacci_100.mp4")
