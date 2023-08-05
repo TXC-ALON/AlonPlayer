@@ -6,3 +6,7 @@ playerlib/__pycache__/
 playerlib/utils/__pycache__/
 
 playerlib/video/__pycache__/
+
+*.pyc
+
+playerlib/bilibili/test/
