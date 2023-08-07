@@ -1,4 +1,6 @@
-from PyQt5.QtCore import QUrl
+
+from PyQt5.QtCore import QUrl, Qt
+from PyQt5.QtGui import QPalette
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from doublePlayer import Ui_MainWindow
@@ -8,10 +10,12 @@ from playerlib import Video
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.mediaPlayer1 = QMediaPlayer(None, QMediaPlayer.VideoSurface)
         # 使用转换的UI文件中的类来设置UI
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.mediaPlayer1 = QMediaPlayer(None, QMediaPlayer.VideoSurface)
+
         self.ui.PB_OpenFile_1.clicked.connect(self.open_file)
         self.ui.PB_Play_Pause_1.clicked.connect(self.play_video)
         self.ui.PB_Next_1.clicked.connect(self.stop_video)
