@@ -1,2 +1,12 @@
 
 test/testfile/SongGod.mp4
+
+playerlib/__pycache__/
+
+playerlib/utils/__pycache__/
+
+playerlib/video/__pycache__/
+
+*.pyc
+
+playerlib/test/

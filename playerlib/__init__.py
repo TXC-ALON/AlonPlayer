@@ -1,4 +1,4 @@
 from playerlib.constants import *
-from playerlib.video.Video import *
-from playerlib.video.VideoSearcher import *
+from playerlib.video.video_class import *
+from playerlib.video.video_searcher import *
 from playerlib.utils.utils import *
