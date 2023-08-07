@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>976</width>
+    <height>618</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QGroupBox" name="VideoGroup2">
+      <property name="title">
+       <string>Video1</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QWidget" name="widget_2" native="true">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>400</width>
+             <height>300</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>2560</width>
+             <height>1440</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="PushButton" name="PB_OpenFile_1">
+             <property name="text">
+              <string>打开文件</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="PushButton" name="PB_Pre_1">
+             <property name="text">
+              <string>上一个</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="PushButton" name="PB_Play_Pause_1">
+             <property name="text">
+              <string>播放/暂停</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="PushButton" name="PB_Next_1">
+             <property name="text">
+              <string>下一个</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="VideoGroup1">
+      <property name="title">
+       <string>Video2</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QWidget" name="widget" native="true">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>400</width>
+             <height>300</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>2560</width>
+             <height>1440</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="PushButton" name="PB_OpenFile_2">
+             <property name="text">
+              <string>打开文件</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="PushButton" name="PB_Pre_2">
+             <property name="text">
+              <string>上一个</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="PushButton" name="PB_Play_Pause_2">
+             <property name="text">
+              <string>播放/暂停</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="PushButton" name="PB_Next_2">
+             <property name="text">
+              <string>下一个</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>976</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="action_OpenFile"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>播放</string>
+    </property>
+    <addaction name="action_Play"/>
+    <addaction name="action_Pause"/>
+    <addaction name="action_Stop"/>
+    <addaction name="action_Play_all"/>
+    <addaction name="action_Stopall"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_OpenFile">
+   <property name="text">
+    <string>打开文件</string>
+   </property>
+  </action>
+  <action name="action_Play">
+   <property name="text">
+    <string>播放</string>
+   </property>
+  </action>
+  <action name="action_Pause">
+   <property name="text">
+    <string>暂停</string>
+   </property>
+  </action>
+  <action name="action_Stop">
+   <property name="text">
+    <string>停止</string>
+   </property>
+  </action>
+  <action name="action_Play_all">
+   <property name="text">
+    <string>全部播放/暂停</string>
+   </property>
+  </action>
+  <action name="action_Stopall">
+   <property name="text">
+    <string>全部停止</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PushButton</class>
+   <extends>QPushButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

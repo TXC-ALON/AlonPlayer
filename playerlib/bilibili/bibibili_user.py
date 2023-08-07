@@ -5,9 +5,9 @@ import asyncio
 
 from playerlib import print_dict, timer_decorator
 
-bili_jct = ""
-SESSDATA = r""
-buvid3 = ""
+bili_jct = "4ae51ba6596d0bf6473a93627b1d5f01"
+SESSDATA = r"4d37b749%2C1706772054%2Cead83%2A82IZadUGIuOuZdu15Yv0d7ZPM5Hm_MInpIgy0VxAXGZJZD8qLjwS15QQhz_gPk7hSV_zEwIQAANAA"
+buvid3 = "51D3A445-9731-4292-D8A3-D0D1E38DE34634473infoc"
 
 Alon_CREDENTIAL = Credential(
     sessdata=SESSDATA,

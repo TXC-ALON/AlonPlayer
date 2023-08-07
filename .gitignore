@@ -9,4 +9,4 @@ playerlib/video/__pycache__/
 
 *.pyc
 
-playerlib/bilibili/test/
+playerlib/test/
