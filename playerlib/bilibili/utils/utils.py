@@ -84,13 +84,14 @@ def calculate_length(text):
     return total_length
 
 
+import wcwidth
+
+
 def format_string(video_time, marker, text):
-    max_marker_length = 35  # 标记和文本部分对齐后的最大长度
-
-    text_length = len(text)
-    num_spaces = max_marker_length - text_length
-
-    formatted_text = "{0}:  {1}{2}  {3}".format(video_time, text, ' ' * num_spaces, marker)
+    marker_width = wcwidth.wcswidth(marker)  # marker的显示宽度
+    text_width = wcwidth.wcswidth(text)  # text的显示宽度
+    fill_spaces = max(10, 20 + marker_width - text_width)  # 需要填充的空格数量
+    formatted_text = "{0}:  {1}{2}{3}".format(video_time, text, " " * fill_spaces, marker)
     return formatted_text
 
 
@@ -100,6 +101,8 @@ def print_single_damu(damu):
     text = damu.text
     output = format_string(video_time, send_time, text)
     print(output)
+
+
 # todo 格式化字符串输出？
 def write_json(list, filename):
     json_data = json.dumps(list)
