@@ -51,7 +51,7 @@ class BUser:
         self.following_num = self.relation_info['following']
         self.all_following = await self.b_user.get_all_followings()
         self.follower_num = self.relation_info['follower']
-        self.video_info = await self.b_user.get_videos(0, 1, 100)
+        #self.video_info = await self.b_user.get_videos()
 
     async def return_user_info(self):
         info = await self.b_user.get_user_info()
@@ -73,7 +73,7 @@ class BUser:
 async def check_same_followers() -> None:
     CREDENTIAL = Alon_CREDENTIAL
     stn = user.User(uid=7349, credential=CREDENTIAL)
-    stn_info = await stn.get_user_info()
+    #stn_info = await stn.get_user_info()
     # print(stn_info)
 
     lists = await stn.get_self_same_followers()
@@ -83,21 +83,26 @@ async def check_same_followers() -> None:
 
 @timer_decorator
 def test():
+
     start_time = timeit.default_timer()
     # 你的代码行
-    stn = BUser(33004052)
+    stn = BUser(7349)
     end_time = timeit.default_timer()
     execution_time = end_time - start_time
     print(f"Execution time: {execution_time} seconds")
-    stn_following_user = stn.get_following_userinfo()
-    for buser in stn_following_user:
-        buser.print_user_info()
-    john = BUser(23947287)
-    john_video_info = john.video_info
-    print(john_video_info)
+    stn_video_info = stn.video_info
+    print(stn_video_info)
 
 
 if __name__ == '__main__':
     test()
+    # #print_dict(stn.info)
+    #
+    #
     # print(stn.name)
     # print(stn.relation_info)
+    # tomato = BUser(546195)
+    # print(tomato.relation_info)
+    # print(stn.all_following)
+    # # print_dict(tomato.info)
+    # # asyncio.run(check_same_followers())

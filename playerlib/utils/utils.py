@@ -98,12 +98,11 @@ def format_time(seconds):
     hours, minutes = divmod(minutes, 60)
     if hours >= 24:
         days, hours = divmod(hours, 24)
-        return "{:d}days {:02d}:{:02d}:{:02d}:{:03d}ms".format(int(days), int(hours), int(minutes), int(seconds),
-                                                               int(milliseconds))
+        return "{:d}days {:02d}:{:02d}:{:02d}".format(int(days), int(hours), int(minutes), int(seconds))
     elif hours > 0:
-        return "{:02d}:{:02d}:{:02d}:{:03d}ms".format(int(hours), int(minutes), int(seconds), int(milliseconds))
+        return "{:02d}:{:02d}:{:02d}:".format(int(hours), int(minutes), int(seconds))
     else:
-        return "{:02d}:{:02d}:{:03d}ms".format(int(minutes), int(seconds), int(milliseconds))
+        return "{:02d}:{:02d}".format(int(minutes), int(seconds))
 
 
 def timer_decorator(func):
